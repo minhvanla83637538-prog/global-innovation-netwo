@@ -1,284 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style type="text/css">
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giải Trí — Trang Chủ</title>
+  <meta name="description" content="Trang web nhỏ về giải trí, phim ảnh, âm nhạc và trò chơi." />
+  <style>
+    :root{
+      --bg:#141414; --card:#1e1e1e; --muted:#aaa; --accent:#ff3366; --glass:rgba(255,255,255,0.05);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, Arial, sans-serif; margin:0; background:linear-gradient(180deg,#0d0d0d 0%, #141414 100%); color:#f5f5f5; -webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--maxw); margin:40px auto; padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff8c42);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px}
+    h1{font-size:22px;margin:0}
+    p.lead{color:var(--muted);margin:4px 0 0;font-size:14px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-size:14px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:28px}
+    main{min-height:300px}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 18px rgba(0,0,0,0.6)}
+    .hero{padding:30px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));}
+    .hero h2{margin:0 0 8px;font-size:28px}
+    .actions{display:flex;gap:10px;margin-top:16px}
+    .btn{background:var(--accent);border:none;padding:10px 16px;border-radius:10px;color:#fff;font-weight:600;cursor:pointer}
+    .btn.alt{background:transparent;color:var(--accent);border:1px solid var(--accent)}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f2f5;
-            color: #1c1e21;
-        }
+    .entry{display:flex;gap:12px;padding:14px 0;border-top:1px solid rgba(255,255,255,0.05)}
+    .entry:first-of-type{border-top:0}
+    .thumb{width:90px;height:68px;border-radius:8px;background:linear-gradient(135deg,#444,#222);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:12px}
+    .meta{flex:1}
+    .meta h3{margin:0;font-size:17px}
+    .meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
 
-        main {
-            height: 70vh;
-            width: 100vw;
-            position: relative;
-            margin: 0 auto;
-        }
+    aside .small{font-size:13px;color:var(--muted)}
+    .list{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .chip{background:var(--glass);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted);cursor:pointer;display:inline-block}
 
-        footer {
-            height: 30vh;
-            background-color: #ffffff;
-        }
+    footer{margin-top:40px;color:var(--muted);font-size:13px;text-align:center}
 
-        .row {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            max-width: 1000px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}.logo{width:48px;height:48px;font-size:16px}}
 
-        .col-logo {
-            flex: 0 0 50%;
-            text-align: left;
-        }
-
-        .col-form {
-            flex: 0 0 40%;
-            text-align: center;
-        }
-
-        .col-logo img {
-            max-width: 300px;
-        }
-
-        .col-logo h2 {
-            font: 26px;
-            font-weight: 400;
-            padding: 0 30px;
-            line-height: 32px;
-        }
-
-        .col-form .form-container {
-            background-color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            padding: 20px;
-            max-width: 400px;
-        }
-
-        .col-form .form-container input,
-        .col-form .form-container .btn-login {
-            width: 100%;
-            margin: 5px 0;
-            height: 45px;
-            vertical-align: middle;
-            font-size: 16px;
-        }
-
-        .col-form .form-container input {
-            border: 1px solid #dddfe2;
-            color: #1d2129;
-            padding: 0 8px;
-            outline: none;
-        }
-
-        .col-form .form-container input:focus {
-            border-color: #1877f2;
-            box-shadow: 0 0 0 2px #e7f3ff;
-        }
-
-        .col-form .form-container .btn-login {
-            background-color: #1877f2;
-            border: none;
-            border-radius: 6px;
-            font-size: 20px;
-            padding: 0 16px;
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        .col-form .form-container a {
-            display: block;
-            color: #1877f2;
-            font-size: 14px;
-            text-decoration: none;
-            padding: 10px 0 20px;
-            border-bottom: 1px solid #dadde1;
-        }
-
-        .col-form .form-container a:hover {
-            text-decoration: underline;
-        }
-
-        .col-form .form-container .btn-new {
-            background-color: #42b72a;
-            border: none;
-            border-radius: 6px;
-            font-size: 17px;
-            line-height: 48px;
-            padding: 0 16px;
-            color: #ffffff;
-            font-weight: 700;
-            margin-top: 20px;
-        }
-
-        .col-form p {
-            font-size: 14px;
-        }
-
-        .col-form p a {
-            text-decoration: none;
-            color: #1c1e21;
-            font-weight: 600;
-        }
-
-        .col-form p a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-contents {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        footer ol {
-            display: flex;
-            flex-wrap: wrap;
-            list-style-type: none;
-            padding: 10px 0;
-        }
-
-        footer ol:first-child {
-            border-bottom: 1px solid #dddfe2;
-        }
-
-        footer ol:first-child li:last-child button {
-            background-color: #f5f6f7;
-            border: 1px solid #ccd0d5;
-            outline: none;
-            color: #4b4f56;
-            padding: 0 8px;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        footer ol li {
-            padding-right: 15px;
-            font-size: 12px;
-            color: #385898;
-        }
-
-        footer ol li a {
-            text-decoration: none;
-            color: #385898;
-        }
-
-        footer ol li a:hover {
-            text-decoration: underline;
-        }
-
-        footer small {
-            font-size: 11px;
-        }
-    </style>
+    .fade-up{animation:fadeUp .6s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  </style>
 </head>
-
 <body>
-    <main>
-        <div class="row">
-            <div class="col-logo">
-                <img src="imgs/fb_icon_325x325.png" alt="Logo">
-                <h2>Facebook helps you connect and share with the people in your life.</h2>
-            </div>
-            <div class="col-form">
-                <div class="form-container">
-                    <input type="text" placeholder="Email or phone number">
-                    <input type="password" placeholder="Password">
-                    <button class="btn-login">Login</button>
-                    <a href="#">Forgotten password?</a>
-                    <button class="btn-new">Create new Account</button>
-                </div>
-                <p><a href="#"><b>Create a Page</b></a> for a celebrity, brand or business.</p>
-            </div>
+  <div class="wrap">
+    <header class="fade-up">
+      <div class="brand">
+        <div class="logo">GT</div>
+        <div>
+          <h1>Giải Trí — Góc Vui</h1>
+          <p class="lead">Phim ảnh, âm nhạc, trò chơi và hơn thế nữa.</p>
         </div>
-    </main>
+      </div>
+      <nav>
+        <a href="#">Trang chủ</a>
+        <a href="#movies">Phim</a>
+        <a href="#music">Âm nhạc</a>
+        <a href="#games">Trò chơi</a>
+      </nav>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card hero fade-up">
+          <h2>Khám phá thế giới giải trí mỗi ngày</h2>
+          <p>Tin tức mới nhất về phim bom tấn, bản nhạc hot, và trò chơi hấp dẫn.</p>
+          <div class="actions">
+            <button class="btn">Xem ngay</button>
+            <button class="btn alt">Đăng ký nhận tin</button>
+          </div>
+        </section>
+
+        <section class="card fade-up" id="movies" style="margin-top:20px">
+          <h3 style="margin:0 0 12px">Phim nổi bật</h3>
+
+          <article class="entry">
+            <div class="thumb">Phim</div>
+            <div class="meta">
+              <h3>Hành Trình Vũ Trụ</h3>
+              <p>Bộ phim khoa học viễn tưởng gây sốt phòng vé 2025.</p>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="thumb">Phim</div>
+            <div class="meta">
+              <h3>Tình Yêu & Sóng Gió</h3>
+              <p>Phim tình cảm lãng mạn đang được nhiều người chờ đợi.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="card fade-up" id="music" style="margin-top:20px">
+          <h3 style="margin:0 0 12px">Âm nhạc</h3>
+
+          <article class="entry">
+            <div class="thumb">Nhạc</div>
+            <div class="meta">
+              <h3>Bản Hit Mới</h3>
+              <p>Bài hát đứng đầu bảng xếp hạng tuần này.</p>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="thumb">Nhạc</div>
+            <div class="meta">
+              <h3>Album Sắp Ra Mắt</h3>
+              <p>Album mới từ nghệ sĩ nổi tiếng, hứa hẹn nhiều bất ngờ.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="card fade-up" id="games" style="margin-top:20px">
+          <h3 style="margin:0 0 12px">Trò chơi</h3>
+
+          <article class="entry">
+            <div class="thumb">Game</div>
+            <div class="meta">
+              <h3>Cuộc Chiến Huyền Thoại</h3>
+              <p>Tựa game nhập vai mới với đồ họa ấn tượng.</p>
+            </div>
+          </article>
+
+          <article class="entry">
+            <div class="thumb">Game</div>
+            <div class="meta">
+              <h3>Đua Xe Tốc Độ</h3>
+              <p>Game đua xe kịch tính dành cho tín đồ tốc độ.</p>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card fade-up">
+          <h4 style="margin:0 0 10px">Chủ đề hot</h4>
+          <div class="list">
+            <div class="chip">#PhimBomTấn</div>
+            <div class="chip">#NhạcHot</div>
+            <div class="chip">#GameMới</div>
+            <div class="chip">#ShowTruyềnHình</div>
+          </div>
+        </div>
+
+        <div class="card fade-up" style="margin-top:14px">
+          <h4 style="margin:0 0 10px">Về trang</h4>
+          <p class="small">Trang web chia sẻ niềm vui giải trí: phim, nhạc, game. Cập nhật liên tục để bạn không bỏ lỡ.</p>
+        </div>
+      </aside>
+    </div>
+
     <footer>
-        <div class="footer-contents">
-            <ol>
-                <li>English (UK)</li>
-                <li><a href="#">മലയാളം</a></li>
-                <li><a href="#">தமிழ்</a></li>
-                <li><a href="#">తెలుగు</a></li>
-                <li><a href="#">বাংলা</a></li>
-                <li><a href="#">اردو</a></li>
-                <li><a href="#">हिन्दी</a></li>
-                <li><a href="#">ಕನ್ನಡ</a></li>
-                <li><a href="#">Español</a></li>
-                <li><a href="#">Português (Brasil)</a></li>
-                <li><a href="#">Français (France)</a></li>
-                <li><button>+</button></li>
-            </ol>
-
-            <ol>
-                <li><a href="#">Sign Up</a></li>
-                <li><a href="#">Log In </a></li>
-                <li><a href="#">Messenger</a></li>
-                <li><a href="#">Facebook Lite</a></li>
-                <li><a href="#">Watch</a></li>
-                <li><a href="#">People</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Page categories</a></li>
-                <li><a href="#">Places</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Locations</a></li>
-                <li><a href="#">Marketplace</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">PayGroups</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Oculus</a></li>
-                <li><a href="#">Portal</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Local</a></li>
-                <li><a href="#">Sign Up</a></li>
-                <li><a href="#">Log In </a></li>
-                <li><a href="#">Messenger</a></li>
-                <li><a href="#">Facebook Lite</a></li>
-                <li><a href="#">Watch</a></li>
-                <li><a href="#">People</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Page categories</a></li>
-                <li><a href="#">Places</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Locations</a></li>
-                <li><a href="#">Marketplace</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">PayGroups</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">Oculus</a></li>
-                <li><a href="#">Portal</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Local</a></li>
-            </ol>
-            <small>Facebook © 2024</small>
-        </div>
+      <div class="small">© 2025 Giải Trí — Góc Vui. Tất cả vì sự thư giãn và niềm vui.</div>
     </footer>
+  </div>
 </body>
-<script>
-    const btn = document.querySelector('button');
-    btn.addEventListener('click', () => {
-        window.location.href = 'https://www.facebook.com/';
-    });
-</script>
-
 </html>
